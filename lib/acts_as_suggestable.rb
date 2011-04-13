@@ -1,0 +1,2 @@
+require 'acts_as_suggestable/acts_as_suggestable'
+require 'acts_as_suggestable/suggestable'
