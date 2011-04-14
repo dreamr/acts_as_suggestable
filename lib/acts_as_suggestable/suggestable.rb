@@ -1,3 +1,5 @@
+require 'active_record'
+
 class Suggestable < ActiveRecord::Base
   belongs_to :user
   belongs_to :suggested_by, :polymorphic => true

@@ -1,0 +1,23 @@
+Autotest.add_hook :initialize do |at|
+  at.unit_diff = 'cat'
+  at.clear_mappings 
+  
+  %w{db Gemfile.lock .DS_Store ._* vendor}.each { |e| autospec.add_exception(e) }
+  
+  at.remove_mapping(/^test\/unit$/)
+  at.remove_mapping(/^lib\/.*\.rb$/)
+  at.add_mapping(%r%^lib/(.*).rb%) do |filename, m|
+    ["spec/lib/#{m[1]}_spec.rb"]
+  end
+
+  at.add_mapping(%r%^spec/lib/.*\.rb$%) {|filename, _| filename}
+  
+  nil
+    
+end
+
+Autotest.add_hook :ran_command do |at|
+  File.open('/tmp/autospec.txt','wb') do |f|
+    f.write(at.results.join.gsub!(/\[\//,"["))
+  end
+end

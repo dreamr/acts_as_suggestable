@@ -15,8 +15,13 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "acts_as_suggestable"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
-  s.add_development_dependency "rspec", "~> 2.5"
-  s.add_development_dependency "active-support", "~> 3.0"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rspec-mocks"
+  s.add_development_dependency "activesupport", "~> 3.0"
+  s.add_development_dependency "activerecord", "~> 3.0"
+  s.add_development_dependency "autotest"
+  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "shoulda"
 
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
