@@ -34,7 +34,13 @@ call is_suggestable in the model
 EOS
       raise Exception.new(msg) unless 
             suggestable.respond_to?(:is_suggestable?)
-            
+      
+      return nil if Suggestable.where(
+        :user_id => user.id, 
+        :suggestion_id => suggestable.id, 
+        :suggested_by_id => self.id
+      ) 
+      
       Suggestable.create(
         :suggested_by => self,
         :suggestion   => suggestable,
