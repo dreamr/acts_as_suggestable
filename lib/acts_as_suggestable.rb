@@ -1,8 +1,3 @@
-Dir.glob(
-  File.join(File.dirname(__FILE__), "db", "migrate", "*")).each do |file|
-  require file
-end
-
 module ActsAsSuggestable
   extend ActiveSupport::Concern
   
@@ -61,3 +56,7 @@ EOS
 end
 
 ActiveRecord::Base.send :include, ActsAsSuggestable
+=======
+require 'acts_as_suggestable/acts_as_suggestable'
+require 'acts_as_suggestable/suggestable'
+>>>>>>> b54178a5911ab7b485ea23a4374dc90b430b9643
