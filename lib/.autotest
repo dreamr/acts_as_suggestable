@@ -1,0 +1,14 @@
+Autotest.add_hook :initialize do |at|
+  at.unit_diff = 'cat'
+  %w{.git db Gemfile.lock .DS_Store ._* vendor}.each { |e| at.add_exception(e) }
+  
+  at.add_mapping(%r{^lib/.*\.rb$}) {|f, _|
+    Dir['spec/**/*.rb']
+  }
+end
+
+Autotest.add_hook :ran_command do |at|
+  File.open('/tmp/autotest.txt','wb') do |f|
+    f.write(at.results.join.gsub!(/\[\//,"["))
+  end
+end

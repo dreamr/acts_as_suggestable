@@ -1,7 +1,5 @@
-Dir.glob(
-  File.join(File.dirname(__FILE__), "db", "migrate", "*")).each do |file|
-  require file
-end
+require 'active_record'
+require 'active_support/concern'
 
 module ActsAsSuggestable
   extend ActiveSupport::Concern
@@ -34,7 +32,9 @@ module ActsAsSuggestable
 That model is not suggestable, please include ActsAsSuggestable and
 call is_suggestable in the model
 EOS
-      raise Exception.new(msg) unless suggestable.is_suggestable?
+      raise Exception.new(msg) unless 
+            suggestable.respond_to?(:is_suggestable?)
+            
       Suggestable.create(
         :suggested_by => self,
         :suggestion   => suggestable,
