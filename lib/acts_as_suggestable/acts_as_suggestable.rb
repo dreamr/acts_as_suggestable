@@ -38,7 +38,7 @@ EOS
       return nil if Suggestable.where(
         :user_id => user.id, 
         :suggestion_id => suggestable.id, 
-        :suggested_by_id => suggested_by.id
+        :suggested_by_id => self.id
       ).exists?
       
       Suggestable.create(
