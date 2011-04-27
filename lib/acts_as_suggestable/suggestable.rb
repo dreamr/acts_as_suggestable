@@ -10,4 +10,5 @@ class ActsAsSuggestable::Suggestable < ActiveRecord::Base
 
   scope :by_type,     lambda {|type| 
                         where('suggestables.suggestion_type = ?', type.to_s)}
+                        
 end
